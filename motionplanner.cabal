@@ -1,0 +1,97 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 1a6d5c5fab1b106811079bc3e618a889d1122013680d0eccf3f1df6b61dda753
+
+name:           motionplanner
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/kaffepanna/motionplanner#readme>
+homepage:       https://github.com/kaffepanna/motionplanner#readme
+bug-reports:    https://github.com/kaffepanna/motionplanner/issues
+author:         Patrik Pettersson
+maintainer:     pettersson.pa@gmail.com
+copyright:      2019 Patrik Pettersson
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/kaffepanna/motionplanner
+
+library
+  exposed-modules:
+      Algorithm.Astar
+      Algorithm.Internal
+      Lib
+      Planner
+      Planner.Config
+      Planner.CSpace
+      Planner.Diagram
+      Render
+      Vehicle
+  other-modules:
+      Paths_motionplanner
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , diagrams
+    , diagrams-contrib
+    , diagrams-lib
+    , diagrams-svg
+    , fingertree
+    , hashable
+    , mtl
+    , unordered-containers
+  default-language: Haskell2010
+
+executable motionplanner-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_motionplanner
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , diagrams
+    , diagrams-contrib
+    , diagrams-lib
+    , diagrams-svg
+    , fingertree
+    , hashable
+    , motionplanner
+    , mtl
+    , unordered-containers
+  default-language: Haskell2010
+
+test-suite motionplanner-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_motionplanner
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , diagrams
+    , diagrams-contrib
+    , diagrams-lib
+    , diagrams-svg
+    , fingertree
+    , hashable
+    , motionplanner
+    , mtl
+    , unordered-containers
+  default-language: Haskell2010

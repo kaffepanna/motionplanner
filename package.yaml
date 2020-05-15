@@ -1,0 +1,57 @@
+name:                motionplanner
+version:             0.1.0.0
+github:              "kaffepanna/motionplanner"
+license:             BSD3
+author:              "Patrik Pettersson"
+maintainer:          "pettersson.pa@gmail.com"
+copyright:           "2019 Patrik Pettersson"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/kaffepanna/motionplanner#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- fingertree
+- hashable
+- containers
+- unordered-containers
+- mtl
+- diagrams
+- diagrams-lib
+- diagrams-contrib
+- diagrams-svg
+
+library:
+  source-dirs: src
+
+executables:
+  motionplanner-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - motionplanner
+
+tests:
+  motionplanner-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - motionplanner
