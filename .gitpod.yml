@@ -1,0 +1,10 @@
+image: fpco/stack-build:lts-15.3
+
+tasks:
+  - init: 'echo "TODO: Replace with init/build command"'
+    command: stack setup
+
+vscode:
+  extensions:
+    - justusadam.language-haskell@3.3.0:uqgpHstOoamig+7LyFNNVw==
+    - haskell.haskell@1.1.0:Wt1BvkxTWaeCQD86YIN0fw==
