@@ -15,7 +15,7 @@ import qualified Data.Map as Map
 
 import Render
 import Planner
-import Planner.Config 
+import Planner.Config
 import Planner.CSpace
 
 import Debug.Trace
@@ -24,9 +24,9 @@ import Diagrams.Backend.SVG.CmdLine
 
 cfg = Configuration {
         wheelBase        = 0.8,                           -- Metre, wheelbase
-        maxSteer         = pi / 8,                        -- Radian, maximum steering angle in one direction
-        nSteer           = 4,                             -- descreete steering angles to test
-        motionResolution = (sqrt 2) * gridResolution cfg, -- Meter,
+        maxSteer         = pi / 4,                        -- Radian, maximum steering angle in one direction
+        nSteer           = 5,                             -- descreete steering angles to test
+        motionResolution = sqrt 2 * gridResolution cfg, -- Meter,
         gridResolution   = 0.5                            -- Meter
 }
 
@@ -49,7 +49,10 @@ main :: IO ()
 main = do
         let (x, y, _) = start
         let plannerRun = flip runPlannerT
+
         plannerRun env $ do
+           steers <- steerAngles
+           lift $ print steers
            path <- generatePath start goal
            diaPath <- renderPath path
            diaGrid <- renderGrid 

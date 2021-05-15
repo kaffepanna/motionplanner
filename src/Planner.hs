@@ -37,7 +37,7 @@ node (x, y, o) a = let o' = o
 
 instance Eq Node where
     Node i1 _ _ == Node i2 _ _ = i1 == i2
-                                                           
+
 instance Hashable Node where
     hashWithSalt s (Node i _ _) = hashWithSalt s i
 
@@ -48,7 +48,7 @@ newtype PlannerT m a = Config { unPlanner :: ReaderT Env m a }
 
 type Planner = PlannerT Identity
 
-instance HasConfig Env where 
+instance HasConfig Env where
     configuration = config
 
 instance HasCSpace Env where
@@ -63,8 +63,8 @@ steerAngles :: (Monad m) => PlannerT m [Double]
 steerAngles = do
     ms <- maxSteer <$> getConfig
     sr <- nSteer   <$> getConfig
-    let step = ms / (fromIntegral sr)
-    pure $ [-ms, (-ms+step)..(step-ms)] ++ [step, (step)..ms]
+    let step = ms / fromIntegral sr
+    pure $ [-ms, (-ms+step)..ms]
 
 gridIndex :: (Monad m) => (Double, Double, Double) -> PlannerT m (Int, Int, Int)
 gridIndex (x, y, o) = do
@@ -88,7 +88,7 @@ nextMoves (Node (x',y', o') (x,y, o) _) = do
 cost :: (Monad m) => Node -> Node -> PlannerT m Double
 cost (Node _ (x1, y1, o1) a1) (Node _ (x2, y2, o2) a2) =
     return $  distCart + distOr + distSteer
-    where 
+    where
         distCart = sqrt $ (x1 - x2) ** 2 + (y1 - y2) ** 2
         distSteer = 2*pi*distAngle a1 a2
         distOr = pi*distAngle o1 o2
